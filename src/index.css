@@ -1,3 +1,38 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+body {
+  background-color: #121212; /* Spotify dark background */
+  color: #fff;
+}
+
+.navbar, .footer {
+  background-color: #000;
+}
+
+.btn-primary {
+  background-color: #1db954; /* Spotify green accent */
+  border-color: #1db954;
+}
+
+.btn-primary:hover {
+  background-color: #1ed760;
+}
+
+.btn-danger {
+  background-color: #e22134; /* Red accent for danger/stop */
+  border-color: #e22134;
+}
+
+.card {
+  background-color: #1e1e1e;
+  border: none;
+  color: #fff;
+}
+
+.list-group-item {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  color: #fff;
+}
+
+.list-group-item:hover {
+  background-color: #333;
+}
