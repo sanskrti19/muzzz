@@ -4,6 +4,7 @@
   object-fit: cover;
   height: 280px;
   width: 100%;
+  background-color: #1e1e1e;
 }
 
 .image-container {
@@ -15,9 +16,10 @@
 .image-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  color: white; /* 👈 makes text white */
+  transition: opacity 0.4s ease, transform 0.3s ease;
 }
 
 .image-container:hover .event-img {
@@ -28,3 +30,9 @@
 .image-container:hover .image-overlay {
   opacity: 1;
 }
+
+.image-overlay h5,
+.image-overlay p {
+  color: white;
+}
+ 

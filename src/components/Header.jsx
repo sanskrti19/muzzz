@@ -13,7 +13,7 @@ export default function Header() {
             <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" to="/about">About</NavLink></li>
             <li className="nav-item"><NavLink className="nav-link" to="/events">Events</NavLink></li>
-            <li className="nav-item"><NavLink className="nav-link" to="/music">Music</NavLink></li>
+            
             <li className="nav-item"><NavLink className="nav-link" to="/contact">Contact</NavLink></li>
              <li className="nav-item"><NavLink className="nav-link" to="/room">Room</NavLink></li>
           </ul>

@@ -17,17 +17,21 @@ export default function Events() {
               <div className="card border-0 position-relative overflow-hidden shadow-sm bg-transparent">
                 <div className="image-container position-relative">
                   <img
-                    src={event.img}
+                    src="https://stories.freepiklabs.com/api/vectors/music-festival/bro/render?color=&background=complete"
                     className="card-img-top event-img"
                     alt={event.title}
                   />
-                  <div className="image-overlay d-flex align-items-center justify-content-center">
-                    <span className="badge bg-danger px-3 py-2 fs-6">{event.date}</span>
+                  <div className="image-overlay d-flex flex-column justify-content-end text-start p-3">
+                    <span className="badge bg-danger px-3 py-2 fs-6 align-self-start">
+                      {event.date}
+                    </span>
+                    <h5 className="fw-semibold mt-3 mb-1 text-white">
+                      {event.title}
+                    </h5>
+                    <p className="small text-light mb-0">
+                      Don’t miss the night vibes ✨
+                    </p>
                   </div>
-                </div>
-                <div className="card-body mt-3">
-                  <h5 className="card-title fw-semibold mb-0">{event.title}</h5>
-                  <p className="text-muted small mt-1">Don’t miss the night vibes ✨</p>
                 </div>
               </div>
             </div>

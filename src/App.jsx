@@ -7,9 +7,10 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Room from "./components/Room";
-import Music from "./components/Music";
+ 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Events from "./components/Events";
 
 const App = () => {
   return (
@@ -22,8 +23,9 @@ const App = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/music" element={<Music />} />
+        
         <Route path="/room" element={<Room />} />
+        <Route path="/events" element={<Events/>}/>
       </Routes>
       <Footer />
     </Router>
