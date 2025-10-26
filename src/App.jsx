@@ -1,28 +1,33 @@
-// App.jsx
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Landing from "./pages/landing";
 import Home from "./components/Home";
 import About from "./components/About";
-import Events from "./components/Events";
-import Music from "./components/Music";
 import Contact from "./components/Contact";
+import Login from "./components/Login";
+import Register from "./components/Register";
 import Room from "./components/Room";
+import Music from "./components/Music";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
-function App() {
+const App = () => {
   return (
-    <BrowserRouter>
-      <Header /> {/* Now NavLink works because Header is inside Router */}
-      
+    <Router>
+      <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/music" element={<Music />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/music" element={<Music />} />
         <Route path="/room" element={<Room />} />
       </Routes>
-    </BrowserRouter>
+      <Footer />
+    </Router>
   );
-}
+};
 
 export default App;
