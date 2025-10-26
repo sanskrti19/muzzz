@@ -7,19 +7,32 @@ export default function Events() {
 
   return (
     <section className="py-5 bg-dark text-white text-center">
-      <h2 className="mb-4">Event List</h2>
-      <div className="row g-4 justify-content-center">
-        {eventList.map((event, i) => (
-          <div className="col-md-4" key={i}>
-            <div className="card bg-dark text-white">
-              <img src={event.img} className="card-img-top" alt={event.title} />
-              <div className="card-body">
-                <span className="badge bg-danger">{event.date}</span>
-                <h5 className="card-title mt-2">{event.title}</h5>
+      <div className="container">
+        <h2 className="fw-light mb-5 text-uppercase" style={{ letterSpacing: "2px" }}>
+          Upcoming Events
+        </h2>
+        <div className="row g-4 justify-content-center">
+          {eventList.map((event, i) => (
+            <div className="col-md-4 col-sm-10" key={i}>
+              <div className="card border-0 position-relative overflow-hidden shadow-sm bg-transparent">
+                <div className="image-container position-relative">
+                  <img
+                    src={event.img}
+                    className="card-img-top event-img"
+                    alt={event.title}
+                  />
+                  <div className="image-overlay d-flex align-items-center justify-content-center">
+                    <span className="badge bg-danger px-3 py-2 fs-6">{event.date}</span>
+                  </div>
+                </div>
+                <div className="card-body mt-3">
+                  <h5 className="card-title fw-semibold mb-0">{event.title}</h5>
+                  <p className="text-muted small mt-1">Don’t miss the night vibes ✨</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

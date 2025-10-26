@@ -12,7 +12,7 @@ export default function Music() {
         {musicList.map((music, i) => (
           <div className="col-md-3" key={i}>
             <div className="card bg-dark text-white">
-              <img src={music.img} className="card-img-top rounded-circle p-3" alt={music.title} />
+              <img src="https://stories.freepiklabs.com/api/vectors/music-festival/rafiki/render?color=&background=complete" className="card-img-top rounded-circle p-3" alt={music.title} />
               <div className="card-body">
                 <h5>{music.title}</h5>
                 <button className="btn btn-outline-danger mt-2">Listen</button>

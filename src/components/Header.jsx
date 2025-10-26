@@ -17,7 +17,7 @@ export default function Header() {
             <li className="nav-item"><NavLink className="nav-link" to="/contact">Contact</NavLink></li>
              <li className="nav-item"><NavLink className="nav-link" to="/room">Room</NavLink></li>
           </ul>
-          <button className="btn btn-outline-light ms-3">Get in Touch</button>
+    
         </div>
       </div>
     </nav>
