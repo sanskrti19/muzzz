@@ -5,7 +5,9 @@ const Landing = () => {
   return (
     <div className="landing-container">
       <nav className="navbar">
-        <h3 className="logo">Muzzz</h3>
+        {/* <img src="https://i.pinimg.com/736x/52/67/d4/5267d4279700b5716652fbf756062e4e.jpg"
+        className="logo"></img> */}
+        {/* <h3 className="logo">Muzzz</h3> */}
         
       </nav>
 

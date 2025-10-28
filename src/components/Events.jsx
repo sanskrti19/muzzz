@@ -29,7 +29,7 @@ export default function Events() {
                       {event.title}
                     </h5>
                     <p className="small text-light mb-0">
-                      Don’t miss the night vibes ✨
+                      Don’t miss the night vibes 
                     </p>
                   </div>
                 </div>
