@@ -2,6 +2,11 @@ import React from 'react'
 import DemoProps from './DemoProps'
 
 const App2 = () => {
+    const users= [
+        {name:"Sans", age:20, city:"Pune"},
+          {name:"riya", age:20, city:"Pone"},
+      {name:"Shri", age:20, city:"Mumbai" }
+    ]
   return (
     <div>App2
         <h1>Demo props</h1>
@@ -13,9 +18,18 @@ const App2 = () => {
             </thead>
             <tbody >
                 <DemoProps th1="sanskrti" th2="20" th3="pune"/>
-                
+
 
                  </tbody>
+                 {users.map((user, index )=>(
+                    <DemoProps 
+                    key = {index}
+                    name= {user.name}
+                    age={user.age}
+                    city={user.city}
+                    />
+                    
+                 ))}
         </table>
     </div>
      
