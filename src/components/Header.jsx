@@ -3,18 +3,18 @@ import { NavLink } from "react-router-dom";
 export default function Header() {
   return (
     <nav
-      className="navbar navbar-expand-lg navbar-dark px-4"
+      className="navbar navbar-expand-lg navbar-dark px-4  "
       style={{ backgroundColor: "#000" }}
     >
       <div className="container">
-        {/* Brand Logo */}
+         
         <NavLink className="navbar-brand d-flex align-items-center" to="/">
           <img
             src="https://i.pinimg.com/1200x/52/67/d4/5267d4279700b5716652fbf756062e4e.jpg"
             alt="Logo"
             style={{ height: "50px", width: "auto", borderRadius: "5px" }}
           />
-          <span className="ms-2 text-danger fw-bold">Muzz</span>
+          <span className="ms-2 text-danger fw-bold   ">Muzz</span>
         </NavLink>
 
         <button
@@ -42,6 +42,9 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/room">Room</NavLink>
+            </li>
+             <li className="nav-item">
+              <NavLink className="nav-link" to="/login">Login</NavLink>
             </li>
           </ul>
         </div>

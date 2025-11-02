@@ -30,32 +30,21 @@ body {
 }
 
  
-/* .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 4rem;  
-   
-    background-color: transparent; 
-    padding: 0;  
-}
-     */
+ 
 
 .menu-icon {
     font-size: 1.5rem;
     cursor: pointer;
-    /* Improved look: thinner line, no padding */
+     
     line-height: 1; 
 }
-
-/* --- Hero Section (Two-Column Layout) --- */
+ 
 .hero-section {
     display: flex;
     flex-direction: column;
-    gap: 3rem; /* Reduced gap */
+    gap: 3rem;  
 }
-
-/* --- A. Text Content (Left Column) --- */
+ 
 .text-content {
     padding-top: 1rem;
 }
@@ -64,7 +53,7 @@ body {
     font-size: 3rem;
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 2rem; /* Reduced margin */
+    margin-bottom: 2rem;  
     color: var(--primary-text);
 }
 
@@ -75,20 +64,31 @@ body {
 }
 
 .primary-btn {
-    background-color: var(--accent-black);
-    color: var(--card-white);
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
-    border: none;
+  /* background-color: var(--accent-black); */
+  /* color: var(--card-white);
+  padding: 0.6rem 1.2rem; /* Slightly reduced padding */
+  /* border-radius: 5px; 
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; /* Added box-shadow transition */
+  /* display: inline-flex;
+  width: 30%;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);     */
+    /* text-decoration: none;
     font-size: 0.875rem;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    font-weight: 500;
+    text-transform: uppercase;
+    color: #6b7280;
+    transition: color 0.3s; */
+}
+.primary-btn:hover {
+  background-color: #222;
+  transform: scale(1.03);
 }
 
-.primary-btn:hover {
-    background-color: #333333;
-    transform: scale(1.02);
-}
 
 .secondary-link {
     text-decoration: none;
@@ -103,28 +103,32 @@ body {
     color: var(--accent-black);
 }
 
-/* --- B. Image Grid (Right Column) --- */
+.button-container {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+ 
+ 
 .image-grid {
     position: relative;
-    /* Increased height for better overlap space on mobile */
+  
     min-height: 700px; 
-    /* Remove the right/bottom padding introduced earlier */
+    
     padding-right: 0; 
     padding-bottom: 0;
 }
-
-/* Common image styles */
+ 
 .image-grid img {
-    /* Changed to 'cover' to mimic the photo style of the original design */
+  
     object-fit: cover; 
     filter: grayscale(100%);
     border-radius: 12px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s, box-shadow 0.3s;
     position: absolute;
-    /* Added white background for image cards */
+  
     background-color: var(--card-white); 
-    padding: 8px; /* Slight inner padding for the white border effect */
+    padding: 8px;  
 }
 
 .image-grid img:hover, .featured-card:hover {
@@ -132,36 +136,34 @@ body {
     transform: scale(1.01);
 }
 
-/* Image 1 (Left-Middle) */
+ 
 .img-left {
     width: 65%; 
     max-width: 320px; 
     height: 300px; 
-    top: 150px; /* Pushed down */
+    top: 150px;  
     left: 0;
     z-index: 10;
 }
-
-/* Image 3 (Far Right, back layer) */
+ 
 .img-right {
     width: 35%; 
     max-width: 200px; 
     height: 400px; 
-    top: 50px; /* Moved up */
+    top: 50px;  
     right: 0; 
     z-index: 0;
     opacity: 0.75;
 }
-
-/* --- Featured Card (Front Layer) --- */
+ 
 .featured-card {
     position: absolute;
     width: 90%; 
     max-width: 380px; 
-    top: 0; /* Align to the top edge */
+    top: 0;  
     right: 0; 
     background-color: var(--card-white);
-    padding: 1.5rem; /* Increased padding slightly */
+    padding: 1.5rem;  
     border-radius: 12px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
     z-index: 20;
@@ -171,12 +173,12 @@ body {
 .featured-card .img-main {
     position: static;
     width: 100%;
-    height: 250px; /* Increased height for the main image */
+    height: 250px;  
     margin-bottom: 1.5rem;
     border-radius: 8px;
     box-shadow: none;
-    padding: 0; /* Remove padding for this internal image */
-    filter: none; /* Keep the main image color for contrast if using the original image style */
+    padding: 0;  
+    filter: none;  
 }
 
 .card-overlay h3 {
@@ -197,8 +199,7 @@ body {
     color: #6b7280;
 }
 
- 
-/* --- Footer Scroll Navigation --- */
+  
 .scroll-nav {
     position: absolute;
     bottom: 2rem;
@@ -239,8 +240,7 @@ body {
     font-weight: 500;
     border-bottom: 1px solid var(--accent-black);
 }
-
-/* --- Media Query for Tablet/Desktop Layout --- */
+ 
 @media (min-width: 768px) {
     .navbar {
         margin-bottom: 6rem;
@@ -255,14 +255,14 @@ body {
     .image-grid {
         min-height: 600px;
     }
-    
-    /* Adjusted image size and position for tablet */
+     
     .img-left {
         width: 300px;
         height: 400px;
         top: 120px;
-        left: 50px; /* Moved slightly right */
-    }
+        left: 50px;  
+
+
     .img-right {
         width: 250px;
         height: 450px;
@@ -302,8 +302,7 @@ body {
     .image-grid {
         min-height: 650px;
     }
-
-    /* Adjusted image size and position for desktop */
+ 
     .img-left {
         width: 320px;
         height: 400px;
@@ -337,4 +336,5 @@ body {
     .scroll-nav {
         display: flex;
     }
+}
 }
