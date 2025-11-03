@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+const SignupPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // ✅ React Router navigation hook
+  const navigate = useNavigate(); // ✅ Used to redirect
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,51 +17,47 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ✅ Get stored user info from localStorage
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    // Save user to localStorage
+    localStorage.setItem("user", JSON.stringify(formData));
 
-    if (
-      storedUser &&
-      storedUser.email === formData.email &&
-      storedUser.password === formData.password
-    ) {
-      // ✅ Login successful
-      setMessage("✅ Login successful! Redirecting to home...");
-      localStorage.setItem("isLoggedIn", "true");
-
-      // Redirect after short delay
-      setTimeout(() => {
-        navigate("/"); // 👈 Go to Home page
-      }, 1500);
-    } else {
-      // ❌ Wrong credentials
-      setMessage("❌ Invalid email or password. Try again.");
-    }
+    setMessage("Account created successfully! Redirecting to login...");
+    setTimeout(() => {
+      navigate("/login"); // ✅ Go to Login page after signup
+    }, 2000);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-neutral-900 text-white">
       <div className="bg-neutral-900/90 backdrop-blur-lg border border-red-500/20 shadow-2xl rounded-2xl p-8 w-full max-w-md transform transition duration-300 hover:scale-[1.01] hover:shadow-red-500/30">
         <h2 className="text-center text-red-500 font-extrabold text-3xl mb-2 tracking-tight">
-          Welcome Back 🎶
+          Create Account 🎧
         </h2>
         <p className="text-center text-gray-400 text-sm mb-6">
-          Log in to continue your music journey
+          Join the community and explore your favorite tracks
         </p>
 
         {message && (
-          <div
-            className={`p-3 rounded-lg mb-4 text-sm font-medium text-center ${
-              message.includes("successful")
-                ? "bg-green-900/50 text-green-300"
-                : "bg-red-900/50 text-red-300"
-            }`}
-          >
+          <div className="bg-green-900/50 text-green-300 p-3 rounded-lg mb-4 text-sm font-medium text-center">
             {message}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block mb-1 text-gray-300 text-sm font-medium">
+              Full Name
+            </label>
+            <input
+              type="text"
+              name="name"
+              placeholder="John Doe"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              className="w-full p-3 bg-[#1c1c1c] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-black transition duration-200"
+            />
+          </div>
+
           <div>
             <label className="block mb-1 text-gray-300 text-sm font-medium">
               Email
@@ -92,17 +92,17 @@ const LoginPage = () => {
             type="submit"
             className="w-full bg-red-600 hover:bg-red-500 text-white font-semibold text-lg py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg hover:shadow-red-500/30"
           >
-            Log In
+            Sign Up
           </button>
         </form>
 
         <p className="text-center text-gray-400 text-sm mt-6">
-          Don’t have an account?{" "}
+          Already have an account?{" "}
           <Link
-            to="/signup"
+            to="/login"
             className="text-red-500 font-semibold hover:underline hover:text-red-400"
           >
-            Sign up
+            Log in
           </Link>
         </p>
       </div>
@@ -110,4 +110,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignupPage;

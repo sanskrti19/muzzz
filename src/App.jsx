@@ -7,10 +7,10 @@ import Home from "./components/Home";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
-import Register from "./components/Register";
+import Signup from "./components/Signup";
 import Room from "./components/Room";
 import Events from "./components/Events";
-import Header from "./components/Header";
+import Header from "./components/Navbar";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -28,11 +28,11 @@ const App = () => {
         <Route path="/events" element={<Events />} />
         <Route path="/room" element={<Room />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/signup" element={<Signup/>}/>
 
         
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-
+         
        
         <Route
           path="*"

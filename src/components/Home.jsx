@@ -1,82 +1,81 @@
- 
-  
-import Landing from '../pages/landing'
-import "./home.css";  
+import React from 'react';
 
-const Home = () => {
+const HomePage = () => {
   return (
-    <div className="home-container">
+    <>
       {/* Hero Section */}
-      <Landing />
+      <section
+        className="flex flex-col lg:flex-row justify-between items-center px-6 sm:px-10 lg:px-20 py-16 lg:py-24 max-w-7xl mx-auto"
+      >
+        {/* Left Content */}
+        <div className="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-snug mb-8 tracking-tighter">
+            Music for <br className="hidden sm:inline" />
+            everyone.
+          </h1>
 
-      {/* About / Intro Section */}
-      <section className="about-section py-5 text-center">
-        <div className="container">
-          <h2 className="section-title">About Our Music Platform</h2>
-          <p className="section-text mt-3">
-            Discover music like never before. Our platform connects artists,
-            listeners, and creators in one harmonious space. Whether you want
-            to explore new genres or share your passion with others, we’ve got
-            you covered.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6">
+            {/* UPDATED: Changed button to an anchor tag linking to #login */}
+            <a
+              href="#login"
+              className="bg-black text-white px-8 py-3 font-semibold rounded-lg shadow-xl transform transition duration-300 hover:bg-gray-800 hover:scale-105 w-full sm:w-auto text-center"
+            >
+              Try it free
+            </a>
+            <a
+              href="#about" // Internal hash link
+              className="text-gray-500 font-medium hover:text-muzz-red transition duration-300 text-sm sm:text-base"
+            >
+              Learn more &rarr;
+            </a>
+          </div>
         </div>
-      </section>
 
-      {/* Featured Events */}
-      <section className="events-section py-5">
-        <div className="container">
-          <h2 className="section-title text-center mb-4">Upcoming Events</h2>
-          <div className="row justify-content-center">
-            <div className="col-md-4">
-              <div className="event-card">
-                <img
-                  src="https://images.unsplash.com/photo-1511379938547-c1f69419868d"
-                  alt="Live Concert"
-                />
-                <h4>Live Concert Nights</h4>
-                <p>Experience the best live music events happening near you.</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="event-card">
-                <img
-                  src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4"
-                  alt="DJ Party"
-                />
-                <h4>DJ Party Weekend</h4>
-                <p>Join the hottest DJs spinning your favorite tracks.</p>
-              </div>
-            </div>
-            <div className="col-md-4">
-              <div className="event-card">
-                <img
-                  src="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2"
-                  alt="Acoustic Session"
-                />
-                <h4>Acoustic Sessions</h4>
-                <p>Chill vibes with acoustic performances from top artists.</p>
-              </div>
-            </div>
+         
+        <div
+          className="flex flex-row space-x-4 sm:space-x-8 mt-16 lg:mt-0 lg:w-1/2 justify-center items-center p-4"
+        >
+         
+          <div
+            className="hidden sm:block bg-gray-50 shadow-lg rounded-2xl p-4 sm:p-6 w-40 sm:w-64 max-w-[280px] hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+          >
+            <img
+              src="https://stories.freepiklabs.com/api/vectors/music/rafiki/render?color=&background=complete&hide="
+              alt="Dancing Illustration"
+              className="rounded-xl mb-4 w-full h-auto"
+              onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x400/FF5733/ffffff?text=Music+Illustration" }}
+            />
+            <h3 className="font-bold text-gray-900 text-lg mb-1">
+                Live Concerts
+            </h3>
+            <p className="text-sm text-gray-500">Global Artists</p>
+          </div>
+
+          
+          <div
+            className="bg-white shadow-2xl rounded-3xl p-6 sm:p-8 w-64 sm:w-72 max-w-[320px] hover:shadow-muzz-red/50 transition duration-300 transform lg:translate-y-4 border-2 border-muzz-red/10"
+          >
+            <img
+              src="https://stories.freepiklabs.com/api/vectors/recording/amico/render?color=&background=complete"
+              alt="Singing Illustration"
+              className="rounded-xl mb-4 w-full h-auto"
+              onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x400/4CAF50/ffffff?text=Recording+Illustration" }}
+            />
+            <h3 className="font-extrabold text-gray-900 text-xl mb-1">
+              Today's Country
+            </h3>
+            <p className="text-sm text-muzz-red font-semibold mb-3">Apple Music Country</p>
+            <p className="text-gray-600 text-sm">
+              Discover all the ways you can showcase content on Music, globally and locally.
+            </p>
           </div>
         </div>
       </section>
-
-      {/* Call to Action */}
-      <section className="cta-section py-5 text-center">
-        <div className="container">
-          <h2>Start Your Music Journey Today</h2>
-          <p>Join thousands of users discovering new music every day.</p>
-          <button className="primary-btn">Get Started</button>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="footer py-4 text-center">
-        <p>© {new Date().getFullYear()} MyMusic. All rights reserved.</p>
-      </footer>
-    </div>
+      
+      
+      <div className="h-16 lg:h-24"></div>
+    </>
   );
 };
 
-export default Home;
-
+export default HomePage;

@@ -1,6 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles
 body {
-  background-color: #121212; /* Spotify dark background */
-  color: #fff;
+  background-color: #121212;  
 }
 
 .navbar, .footer {
@@ -8,7 +12,7 @@ body {
 }
 
 .btn-primary {
-  background-color: #1db954; /* Spotify green accent */
+  background-color: #1db954; 
   border-color: #1db954;
 }
 
@@ -17,7 +21,7 @@ body {
 }
 
 .btn-danger {
-  background-color: #e22134; /* Red accent for danger/stop */
+  background-color: #e22134;  
   border-color: #e22134;
 }
 
@@ -35,4 +39,4 @@ body {
 
 .list-group-item:hover {
   background-color: #333;
-}
+} */
