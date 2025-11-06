@@ -18,12 +18,13 @@ const Landing = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-4">
-            <Link
-              to="/login"
-              className="bg-black text-white font-semibold py-3 px-8 rounded-xl text-sm sm:text-base hover:bg-gray-800 transition duration-300 transform hover:scale-105"
-            >
-              Try it free
-            </Link>
+           <Link
+  to="/login"
+  className="bg-black text-white font-semibold py-2 px-4 rounded-lg text-sm hover:bg-gray-800 transition duration-300 w-fit mx-auto lg:mx-0"
+>
+  Try it free
+</Link>
+
             <a
               href="#features"
               className="text-gray-800 font-medium text-sm sm:text-base hover:text-black underline-offset-4 hover:underline transition"
@@ -152,9 +153,7 @@ const Landing = () => {
         </div>
       </section>
  
-      {/* <footer className="py-4 text-center text-gray-500 text-sm border-t mt-auto">
-        © 2025 Muzz. All rights reserved.
-      </footer> */}
+      
     </div>
   );
 };
