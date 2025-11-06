@@ -5,10 +5,10 @@ const Landing = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gradient-to-br from-white via-gray-50 to-gray-100">
       
-      {/* 🚀 Hero Section (Header) */}
+    
       <section className="flex flex-col lg:flex-row items-center justify-between flex-1 px-6 sm:px-12 lg:px-20 py-16">
         
-        {/* Text Content */}
+       
         <div className="w-full lg:w-1/2 text-center lg:text-left space-y-6 mb-12 lg:mb-0">
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-gray-900 leading-tight">
             Music for everyone.
@@ -33,32 +33,31 @@ const Landing = () => {
           </div>
         </div>
         
-        {/* Image Display */}
-        {/* The complex image arrangement is kept within a single container */}
+        
         <div className="w-full lg:w-1/2 relative flex justify-center items-center scale-[0.9] sm:scale-100 min-h-[350px] lg:min-h-[400px] mt-8 lg:mt-0"> 
 
-          {/* Left Image (positioned absolutely to the left) */}
+         
           <img
             src="https://stories.freepiklabs.com/api/vectors/recording/amico/render?color=&background=complete"
             alt="Artist Card Left"
             className="absolute left-0 -bottom-8 w-24 sm:w-36 md:w-48 rounded-xl shadow-lg rotate-[-5deg] hover:rotate-0 transition-all duration-300 z-10"
           />
 
-          {/* Middle Image (main illustration) */}
+          
           <img
             src="https://stories.freepiklabs.com/api/vectors/music/rafiki/render?color=&background=complete&hide="
             alt="Artist Illustration"
             className="w-48 sm:w-64 md:w-80 lg:w-[22rem] rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 z-20"
           />
 
-          {/* Right Image (positioned absolutely to the right) */}
+           
           <img
             src="https://stories.freepiklabs.com/api/vectors/recording/rafiki/render?color=&background=complete&hide="
             alt="Artist Card Right"
             className="absolute right-0 -top-8 w-24 sm:w-36 md:w-48 rounded-xl shadow-lg rotate-[5deg] hover:rotate-0 transition-all duration-300 z-10"
           />
 
-          {/* The "Today's Country" card (always visible on top) */}
+          
           <div className="absolute -bottom-20 -left-10 sm:-bottom-24 sm:-left-20 bg-white shadow-2xl rounded-lg p-3 w-40 sm:w-60 lg:w-80 rotate-2 hover:rotate-0 transition-transform duration-300 z-30">
             <img
               src="https://stories.freepiklabs.com/api/vectors/recording/amico/render?color=&background=complete"
@@ -76,9 +75,7 @@ const Landing = () => {
         </div>
       </section> 
 
-      {/* --- */}
-
-      {/* ✨ Features Section */}
+      
       <section id="features" className="px-6 sm:px-12 lg:px-24 py-16 bg-white">
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-gray-900 mb-12">
           Why You'll Love Muzz
@@ -103,9 +100,7 @@ const Landing = () => {
         </div>
       </section>
  
-      {/* --- */}
-
-      {/* 🗣️ Testimonials Section */}
+       
       <section className="bg-gradient-to-br from-gray-50 to-gray-100 py-16">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
           What Our Listeners Say
@@ -124,9 +119,7 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* --- */}
-
-      {/* 🎵 Call To Action (CTA) Section */}
+      
       <section className="py-20 bg-black text-white text-center">
         <h2 className="text-3xl sm:text-5xl font-extrabold mb-6">
           Start your musical journey today 🎵
@@ -142,9 +135,7 @@ const Landing = () => {
         </Link>
       </section>
 
-      {/* --- */}
-
-      {/* ❓ FAQs Section */}
+       
       <section className="px-6 sm:px-12 lg:px-24 py-16 bg-gray-50">
         <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">FAQs</h2>
         <div className="max-w-3xl mx-auto space-y-6">
@@ -160,13 +151,10 @@ const Landing = () => {
           ))}
         </div>
       </section>
-
-      {/* --- */}
-
-      {/* 🦶 Footer */}
-      <footer className="py-4 text-center text-gray-500 text-sm border-t mt-auto">
+ 
+      {/* <footer className="py-4 text-center text-gray-500 text-sm border-t mt-auto">
         © 2025 Muzz. All rights reserved.
-      </footer>
+      </footer> */}
     </div>
   );
 };

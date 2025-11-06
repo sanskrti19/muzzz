@@ -22,7 +22,7 @@ export default function Navbar() {
         <img
           src= "https://i.pinimg.com/1200x/52/67/d4/5267d4279700b5716652fbf756062e4e.jpg"
           alt="Muzz Logo"
-          className="w-10 h-10 bg-white p-1 rounded-md"
+          className="w-10 h-10 bg-white p-1 rounded-md position-relative"
         />
         <span className="text-xl font-semibold text-red-500">Muzz</span>
       </div>
