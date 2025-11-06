@@ -2,41 +2,4 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom global styles
-body {
-  background-color: #121212;  
-}
-
-.navbar, .footer {
-  background-color: #000;
-}
-
-.btn-primary {
-  background-color: #1db954; 
-  border-color: #1db954;
-}
-
-.btn-primary:hover {
-  background-color: #1ed760;
-}
-
-.btn-danger {
-  background-color: #e22134;  
-  border-color: #e22134;
-}
-
-.card {
-  background-color: #1e1e1e;
-  border: none;
-  color: #fff;
-}
-
-.list-group-item {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
-  color: #fff;
-}
-
-.list-group-item:hover {
-  background-color: #333;
-} */
+ 

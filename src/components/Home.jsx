@@ -1,81 +1,110 @@
-import React from 'react';
+import React from "react";
 
-const HomePage = () => {
+export default function HomePage() {
   return (
-    <>
-      {/* Hero Section */}
-      <section
-        className="flex flex-col lg:flex-row justify-between items-center px-6 sm:px-10 lg:px-20 py-16 lg:py-24 max-w-7xl mx-auto"
-      >
-        {/* Left Content */}
-        <div className="lg:w-1/2 text-center lg:text-left mb-12 lg:mb-0">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold leading-snug mb-8 tracking-tighter">
-            Music for <br className="hidden sm:inline" />
-            everyone.
-          </h1>
+    <div className="min-h-screen w-full flex bg-[#f8f9fb] text-gray-900">
+      {/* Sidebar */}
+      <aside className="w-64 bg-white shadow-lg p-6 flex flex-col gap-6 border-r border-gray-200">
+        <h1 className="text-2xl font-bold text-purple-600">Muzz</h1>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-6">
-            {/* UPDATED: Changed button to an anchor tag linking to #login */}
-            <a
-              href="#login"
-              className="bg-black text-white px-8 py-3 font-semibold rounded-lg shadow-xl transform transition duration-300 hover:bg-gray-800 hover:scale-105 w-full sm:w-auto text-center"
-            >
-              Try it free
-            </a>
-            <a
-              href="#about" // Internal hash link
-              className="text-gray-500 font-medium hover:text-muzz-red transition duration-300 text-sm sm:text-base"
-            >
-              Learn more &rarr;
-            </a>
+        <nav className="flex flex-col gap-4 text-gray-700 text-[0.95rem]">
+          <a className="font-semibold text-purple-600">Home</a>
+          <a className="hover:text-purple-600 transition">Artists</a>
+          <a className="hover:text-purple-600 transition">Albums</a>
+          <a className="hover:text-purple-600 transition">Genres</a>
+          <a className="hover:text-purple-600 transition">Playlists</a>
+        </nav>
+
+        <div className="mt-4 border-t pt-4 flex flex-col gap-3">
+          <a className="hover:text-purple-600 transition">Favourites</a>
+          <a className="hover:text-purple-600 transition">Downloads</a>
+          <a className="hover:text-purple-600 transition">My Playlists</a>
+        </div>
+      </aside>
+
+      {/* Main Section */}
+      <main className="flex-grow p-6 overflow-y-auto">
+        {/* Top Nav */}
+        <div className="flex justify-between items-center mb-6">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="bg-gray-200 px-4 py-2 rounded-lg w-80 focus:ring-2 focus:ring-purple-500 outline-none"
+          />
+
+          <div className="flex items-center gap-4">
+            <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
+              Login / Sign Up
+            </button>
           </div>
         </div>
 
-         
-        <div
-          className="flex flex-row space-x-4 sm:space-x-8 mt-16 lg:mt-0 lg:w-1/2 justify-center items-center p-4"
-        >
-         
-          <div
-            className="hidden sm:block bg-gray-50 shadow-lg rounded-2xl p-4 sm:p-6 w-40 sm:w-64 max-w-[280px] hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
-          >
-            <img
-              src="https://stories.freepiklabs.com/api/vectors/music/rafiki/render?color=&background=complete&hide="
-              alt="Dancing Illustration"
-              className="rounded-xl mb-4 w-full h-auto"
-              onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x400/FF5733/ffffff?text=Music+Illustration" }}
-            />
-            <h3 className="font-bold text-gray-900 text-lg mb-1">
-                Live Concerts
-            </h3>
-            <p className="text-sm text-gray-500">Global Artists</p>
+        {/* Top Music Carousel */}
+        <section>
+          <h2 className="text-xl font-semibold mb-3">Top Music</h2>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div
+                key={i}
+                className="w-56 h-72 bg-white rounded-xl shadow hover:shadow-lg transition relative overflow-hidden cursor-pointer"
+              >
+                <img
+                  src={`https://placehold.co/300x400?text=Track+${i}`}
+                  className="w-full h-full object-cover"
+                  alt="music"
+                />
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Newest Section */}
+        <section className="mt-8">
+          <h2 className="text-xl font-semibold mb-3">Newest</h2>
+
+          <div className="flex flex-col gap-3">
+            {[1, 2, 3].map((i) => (
+              <div
+                key={i}
+                className="flex items-center bg-white p-4 rounded-xl shadow hover:shadow-lg transition"
+              >
+                <img
+                  src={`https://placehold.co/60x60`}
+                  className="rounded-lg"
+                />
+                <div className="ml-4 flex-grow">
+                  <h4 className="font-semibold text-gray-800">Song {i}</h4>
+                  <p className="text-sm text-gray-500">Artist Name</p>
+                </div>
+                <span className="text-sm text-gray-500">3:20</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Playlists */}
+        <section className="mt-8">
+          <div className="flex justify-between items-center mb-3">
+            <h2 className="text-xl font-semibold">Playlists</h2>
+            <button className="text-purple-600 hover:underline">View All</button>
           </div>
 
-          
-          <div
-            className="bg-white shadow-2xl rounded-3xl p-6 sm:p-8 w-64 sm:w-72 max-w-[320px] hover:shadow-muzz-red/50 transition duration-300 transform lg:translate-y-4 border-2 border-muzz-red/10"
-          >
-            <img
-              src="https://stories.freepiklabs.com/api/vectors/recording/amico/render?color=&background=complete"
-              alt="Singing Illustration"
-              className="rounded-xl mb-4 w-full h-auto"
-              onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/600x400/4CAF50/ffffff?text=Recording+Illustration" }}
-            />
-            <h3 className="font-extrabold text-gray-900 text-xl mb-1">
-              Today's Country
-            </h3>
-            <p className="text-sm text-muzz-red font-semibold mb-3">Apple Music Country</p>
-            <p className="text-gray-600 text-sm">
-              Discover all the ways you can showcase content on Music, globally and locally.
-            </p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {["Chill", "Party", "Rainy Day", "Driving"].map((p, i) => (
+              <div
+                key={i}
+                className="rounded-xl overflow-hidden shadow bg-white cursor-pointer hover:shadow-lg transition"
+              >
+                <img
+                  src={`https://placehold.co/300x200?text=${p}`}
+                  className="w-full h-36 object-cover"
+                />
+                <p className="p-3 font-medium">{p}</p>
+              </div>
+            ))}
           </div>
-        </div>
-      </section>
-      
-      
-      <div className="h-16 lg:h-24"></div>
-    </>
+        </section>
+      </main>
+    </div>
   );
-};
-
-export default HomePage;
+}

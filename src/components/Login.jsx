@@ -17,22 +17,20 @@ const LoginPage = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
     if (
-      storedUser &&
-      storedUser.email === formData.email &&
-      storedUser.password === formData.password
-    ) {
-      
-      setMessage(" Login successful! Redirecting to home...");
-      localStorage.setItem("isLoggedIn", "true");
+  storedUser &&
+  storedUser.email === formData.email &&
+  storedUser.password === formData.password
+) {
+  setMessage(" Login successful! Redirecting to home...");
+  localStorage.setItem("isLoggedIn", "true");
 
-       
-      setTimeout(() => {
-        navigate("/");  
-      }, 1500);
-    } else {
+  setTimeout(() => {
+    navigate("/home");   
+  }, 1500);
+} else {
+  setMessage(" Invalid email or password. Try again.");
+}
 
-      setMessage(" Invalid email or password. Try again.");
-    }
   };
 
   return (
