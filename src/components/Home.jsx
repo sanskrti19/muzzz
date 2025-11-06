@@ -1,47 +1,39 @@
 import React from "react";
-import Navbar from "./componets/Navbar";  
+import Navbar from "./Navbar";
 
- 
 const allSongs = [
   {
     title: "Calm Breeze",
     artist: "Lofi Beats",
-    cover:
-      "https://i.pinimg.com/736x/42/f3/06/42f3064a04984474a160da1828ba5ea8.jpg",
+    cover: "https://i.pinimg.com/736x/42/f3/06/42f3064a04984474a160da1828ba5ea8.jpg",
   },
   {
     title: "Night Drive",
     artist: "Synthwave Boy",
-    cover:
-      "https://i.pinimg.com/736x/63/55/f0/6355f0a937949cd3f5a2f980793546e5.jpg",
+    cover: "https://i.pinimg.com/736x/63/55/f0/6355f0a937949cd3f5a2f980793546e5.jpg",
   },
   {
     title: "Ocean Eyes",
     artist: "Billie Wave",
-    cover:
-      "https://i.pinimg.com/736x/17/08/61/170861ab731b6d7dce5ac1001f04003b.jpg",
+    cover: "https://i.pinimg.com/736x/17/08/61/170861ab731b6d7dce5ac1001f04003b.jpg",
   },
   {
     title: "Sunset Walk",
     artist: "Chillhop",
-    cover:
-      "https://i.pinimg.com/1200x/d1/61/09/d1610908d62a28f6b057429f85cb53f8.jpg",
+    cover: "https://i.pinimg.com/1200x/d1/61/09/d1610908d62a28f6b057429f85cb53f8.jpg",
   },
   {
     title: "Falling Star",
     artist: "Dreamy",
-    cover:
-      "https://i.pinimg.com/736x/6f/9e/f9/6f9ef905cc4c8aba5de36344819ca6a7.jpg",
+    cover: "https://i.pinimg.com/736x/6f/9e/f9/6f9ef905cc4c8aba5de36344819ca6a7.jpg",
   },
   {
     title: "Lost Memories",
     artist: "Soft Piano",
-    cover:
-      "https://i.pinimg.com/1200x/42/31/d4/4231d4d6b2f74ca437004023c3376f5d.jpg",
+    cover: "https://i.pinimg.com/1200x/42/31/d4/4231d4d6b2f74ca437004023c3376f5d.jpg",
   },
 ];
 
- 
 const topMusicImages = [
   "https://i.pinimg.com/736x/17/b1/be/17b1be2fc796b1cd0207ea53a086781d.jpg",
   "https://i.pinimg.com/736x/b8/1e/76/b81e76bd165ca157c7574e40412af941.jpg",
@@ -76,16 +68,15 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#f8f9fb] text-gray-900">
 
-       
-      <Navbar />
+      {/* ✅ Navbar */}
+      <div className="mb-4">
+        <Navbar />
+      </div>
 
-      
       <div className="flex">
 
-       
+        {/* ✅ Sidebar */}
         <aside className="w-64 bg-white shadow-lg p-6 flex flex-col gap-6 border-r border-gray-200">
-          <h1 className="text-2xl font-bold text-purple-600">Muzz</h1>
-
           <nav className="flex flex-col gap-4 text-gray-700 text-[0.95rem]">
             <a className="font-semibold text-purple-600 text-xl">Home</a>
             <a className="hover:text-purple-600 transition">Artists</a>
@@ -101,10 +92,10 @@ export default function HomePage() {
           </div>
         </aside>
 
-        
+        {/* ✅ Main Content */}
         <main className="flex-grow p-6 overflow-y-auto">
 
-        
+          {/* SEARCH BAR */}
           <div className="flex justify-between items-center bg-white shadow p-3 rounded-xl mb-6">
             <input
               type="text"
@@ -114,7 +105,6 @@ export default function HomePage() {
               className="bg-gray-200 px-4 py-2 rounded-lg w-80 focus:ring-2 focus:ring-purple-500 outline-none"
             />
 
-             
             <img
               src={profile.profilePic || "https://placehold.co/100x100?text=User"}
               className="w-12 h-12 rounded-full border-2 border-purple-500 object-cover cursor-pointer"
@@ -122,7 +112,7 @@ export default function HomePage() {
             />
           </div>
 
-      
+          {/* SEARCH RESULTS */}
           {query && (
             <div className="bg-white rounded-xl shadow p-4 mb-6">
               <h3 className="font-semibold text-gray-800 mb-3">
@@ -139,11 +129,7 @@ export default function HomePage() {
                       <img
                         src={song.cover}
                         className="w-14 h-14 rounded-lg object-cover"
-                        onError={(e) =>
-                          (e.target.src = "https://placehold.co/80x80?text=Song")
-                        }
                       />
-
                       <div className="ml-4 flex-grow">
                         <p className="font-semibold">{song.title}</p>
                         <p className="text-sm text-gray-500">{song.artist}</p>
@@ -157,7 +143,7 @@ export default function HomePage() {
             </div>
           )}
 
-         
+          {/* TOP MUSIC */}
           <section>
             <h2 className="text-xl font-semibold mb-3">Top Music</h2>
             <div className="flex gap-4 overflow-x-auto pb-2">
@@ -166,20 +152,13 @@ export default function HomePage() {
                   key={i}
                   className="w-56 h-72 bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden cursor-pointer"
                 >
-                  <img
-                    src={img}
-                    className="w-full h-full object-cover"
-                    onError={(e) =>
-                      (e.target.src =
-                        "https://placehold.co/300x400?text=Music")
-                    }
-                  />
+                  <img src={img} className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>
           </section>
 
-         
+          {/* NEWEST */}
           <section className="mt-8">
             <h2 className="text-xl font-semibold mb-3">Newest</h2>
             <div className="flex flex-col gap-3">
@@ -201,7 +180,8 @@ export default function HomePage() {
               ))}
             </div>
           </section>
- 
+
+          {/* PLAYLIST */}
           <section className="mt-8">
             <div className="flex justify-between items-center mb-3">
               <h2 className="text-xl font-semibold">Playlists</h2>
@@ -224,6 +204,7 @@ export default function HomePage() {
               ))}
             </div>
           </section>
+
         </main>
       </div>
     </div>
