@@ -19,7 +19,7 @@ export default function Contact() {
       <div className="max-w-md w-full bg-white/70 backdrop-blur-lg shadow-xl rounded-3xl p-8 border border-white/30">
         <h2 className="text-3xl font-bold text-gray-900 mb-4 text-center">Get in Touch</h2>
         <p className="text-gray-600 text-center mb-8">
-          We'd love to hear from you! Drop your message and we’ll reply soon 🎧
+          We'd love to hear from you! Drop your message and we’ll reply soon 
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -60,6 +60,7 @@ export default function Contact() {
               className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all duration-200"
               placeholder="Write your message here..."
             ></textarea>
+            
           </div>
 
           <button
