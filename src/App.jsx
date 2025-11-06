@@ -32,6 +32,8 @@ export default function App() {
               : <Navigate to="/login" />
           }
         />
+        <Route path="/landing" element={<Landing />} />
+
 
       
         <Route path="/login" element={<Login />} />

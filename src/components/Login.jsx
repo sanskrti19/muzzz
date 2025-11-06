@@ -25,7 +25,7 @@ const Login = () => {
       setMessage("Login successful! Redirecting...");
 
       setTimeout(() => {
-        // ✅ Go to set-profile only if user hasn’t created profile
+         
         if (!profile.displayName) {
           navigate("/set-profile");
         } else {
