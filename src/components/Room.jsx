@@ -1,161 +1,164 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+// Rooms.jsx
+import React, { useEffect, useState } from "react";
 
-export default function Room() {
-  const { id } = useParams();
-  const [searchQuery, setSearchQuery] = useState("");
-  const [isPlaying, setIsPlaying] = useState(false);
+const ROOMS_KEY = "MUZZ_ROOMS";
 
-  const tracks = [
-    { title: "Song 1 (Playing)", artist: "Artist Name", duration: "3:45" },
-    { title: "Song 2", artist: "Another Artist", duration: "2:50" },
-    { title: "Morning Breeze", artist: "Lo-Fi Beats", duration: "3:10" },
-    { title: "Ocean Eyes", artist: "Billie Wave", duration: "4:00" },
-  ];
+export default function Rooms() {
+  const profile = JSON.parse(localStorage.getItem("MUZZ_PROFILE") || "{}");
+  const [rooms, setRooms] = useState([]);
+  const [roomName, setRoomName] = useState("");
+  const [friend, setFriend] = useState("");
 
-  const filteredTracks = tracks.filter(
-    (track) =>
-      track.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      track.artist.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  useEffect(() => {
+    const r = JSON.parse(localStorage.getItem(ROOMS_KEY) || "[]");
+    setRooms(r);
+  }, []);
 
-  const togglePlayPause = () => setIsPlaying(!isPlaying);
+  const saveRooms = (next) => {
+    setRooms(next);
+    localStorage.setItem(ROOMS_KEY, JSON.stringify(next));
+  };
+
+  const createRoom = () => {
+    if (!roomName) return;
+    const newRoom = {
+      id: crypto.randomUUID(),
+      name: roomName,
+      owner: profile.displayName || "You",
+      members: [{ name: profile.displayName || "You", status: "owner" }],
+      requests: [],
+    };
+    const next = [newRoom, ...rooms];
+    saveRooms(next);
+    setRoomName("");
+  };
+
+  const addFriend = (roomId) => {
+    if (!friend) return;
+    const next = rooms.map((r) =>
+      r.id === roomId
+        ? {
+            ...r,
+            requests: [...r.requests, { name: friend, status: "pending" }],
+          }
+        : r
+    );
+    saveRooms(next);
+    setFriend("");
+  };
+
+  const approve = (roomId, name) => {
+    const next = rooms.map((r) =>
+      r.id === roomId
+        ? {
+            ...r,
+            requests: r.requests.filter((x) => x.name !== name),
+            members: [...r.members, { name, status: "member" }],
+          }
+        : r
+    );
+    saveRooms(next);
+  };
 
   return (
-    <div className="h-screen w-screen flex flex-col bg-[#f8f9fb] overflow-hidden">
-      
-      <div className="flex-grow w-full grid grid-cols-[1fr_280px] gap-[10px] p-[10px] overflow-y-auto">
-        
-        <div className="bg-white rounded-[14px] p-[10px_15px] flex justify-between items-center text-[#555] h-[40px] shadow-[0_4px_12px_rgba(0,0,0,0.06)] col-span-2">
-          <input
-            type="text"
-            placeholder="Search tracks..."
-            className="bg-[#f3f3f3] border border-[#e5e5e5] text-[#1a1a1a] px-[15px] py-[8px] rounded-[10px] w-[300px] focus:outline-none focus:border-[#7c4dff] transition"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
+    <div className="min-h-screen bg-[#f8f9fb] p-6">
+      <div className="max-w-4xl mx-auto">
+        {/* profile header */}
+        <div className="bg-white rounded-2xl shadow p-4 mb-6 flex items-center gap-4">
           <img
-            src="https://i.pinimg.com/1200x/80/c9/eb/80c9eb80b0a6cf7dc683342fdeec7653.jpg "
-            alt="Profile"
-           className="w-[55px] h-[55px] rounded-full border-2 border-[#7c4dff] cursor-pointer"
+            src={profile.profilePic || "https://placehold.co/100x100?text=User"}
+            className="w-14 h-14 rounded-full border-2 border-purple-500 object-cover"
           />
-        </div>
-
-        <div>
-          <h2 className="text-[1.6rem] font-semibold text-[#7c4dff] mb-[10px]">Room: {id}</h2>
-
-           
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(220px,1fr))] gap-[20px] mt-[15px]">
-            <div className="bg-white rounded-[16px] p-[20px] text-[#1a1a1a] h-[240px] relative overflow-hidden cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-all">
-              <p className="text-[0.9rem] font-semibold text-[#555]">28 Tracks</p>
-              <h4 className="text-[1.1rem] font-semibold mt-[4px]">Release Radar</h4>
-              <img
-                src="https://stories.freepiklabs.com/api/vectors/edit-photo/cuate/render?color=&background=complete"
-                className="absolute bottom-0 right-0 w-[60%] h-[250px] opacity-[0.7] rounded-[10px]"
-              />
-            </div>
-
-            <div className="bg-white rounded-[16px] p-[20px] text-[#1a1a1a] h-[240px] relative overflow-hidden cursor-pointer shadow-[0_4px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_20px_rgba(0,0,0,0.08)] transition-all">
-              <p className="text-[0.9rem] font-semibold text-[#555]">12 Tracks</p>
-              <h4 className="text-[1.1rem] font-semibold mt-[4px]">Daily Mix</h4>
-              <img
-                src="https://stories.freepiklabs.com/api/vectors/profile-pic/bro/render?color=&background=complete&hide="
-                className="absolute bottom-0 right-0 w-[60%] h-[250px] opacity-[0.7] rounded-[10px]"
-              />
-            </div>
-          </div>
-
-          {/* Genres & Tracks */}
-          <div className="grid grid-cols-[1.5fr_2fr] gap-[20px] mt-[20px]">
-            {/* Genres */}
-            <div className="bg-white rounded-[12px] p-[15px] shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
-              <h4 className="text-[1.1rem] font-semibold mb-[10px]">Genres</h4>
-              <div className="flex flex-wrap gap-[8px]">
-                {["Classic", "House", "Minimal", "Hip-Hop", "Chillout", "Country", "Techno"].map((g, i) => (
-                  <button
-                    key={i}
-                    className={`px-[14px] py-[6px] rounded-[20px] text-[0.8rem] border border-[#e5e5e5] bg-[#f3f3f3] cursor-pointer transition ${i === 0 ? "bg-[#7c4dff] text-white" : "hover:border-[#7c4dff] hover:text-[#7c4dff]"}`}
-                  >
-                    {g}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Tracks */}
-            <div className="bg-white rounded-[12px] p-[15px] shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
-              <h4 className="text-[1.1rem] font-semibold mb-[10px]">Playlist / Queue</h4>
-              <ul>
-                {filteredTracks.length > 0 ? (
-                  filteredTracks.map((track, i) => (
-                    <li
-                      key={i}
-                      className="flex items-center mb-[12px] p-[8px] rounded-[8px] hover:bg-[#f3f3f3] cursor-pointer transition"
-                    >
-                      <img
-                        src="https://stories.freepiklabs.com/api/vectors/profile-pic/bro/render?color=&background=complete&hide="
-                        className="w-[45px] h-[45px] rounded-[6px] object-cover"
-                      />
-                      <div className="flex-grow ml-[10px]">
-                        <div className="text-[0.9rem] font-medium">{track.title}</div>
-                        <div className="text-[0.75rem] text-[#555]">{track.artist}</div>
-                      </div>
-                      <span className="text-[0.8rem] text-[#555]">{track.duration}</span>
-                    </li>
-                  ))
-                ) : (
-                  <p className="text-[#777] text-[0.9rem]">No tracks found.</p>
-                )}
-              </ul>
-            </div>
+          <div className="flex-grow">
+            <p className="font-semibold">{profile.displayName || "Your Name"}</p>
+            <p className="text-sm text-gray-500">
+              {profile.instagram && <>Instagram: <span className="font-medium">{profile.instagram}</span> • </>}
+              {profile.snapchat && <>Snap: <span className="font-medium">{profile.snapchat}</span></>}
+            </p>
           </div>
         </div>
 
-        {/* Friends Panel */}
-        <div className="bg-white rounded-[12px] p-[15px] shadow-[0_4px_12px_rgba(0,0,0,0.06)] h-fit sticky top-[15px]">
-          <h4 className="text-[1.1rem] font-semibold mb-[10px]">Friends Activity</h4>
-          <div className="flex items-center mb-[12px] p-[6px] rounded-[8px] hover:bg-[#f3f3f3] cursor-pointer transition">
-            <img
-              src="https://stories.freepiklabs.com/api/vectors/profile-pic/rafiki/render?color=&background=complete&hide="
-              className="w-[40px] h-[40px] rounded-full mr-[10px] object-cover"
+        {/* create room */}
+        <div className="bg-white rounded-2xl shadow p-4 mb-6">
+          <h3 className="font-semibold text-gray-800 mb-3">Create a Room</h3>
+          <div className="flex gap-2">
+            <input
+              value={roomName}
+              onChange={(e) => setRoomName(e.target.value)}
+              placeholder="Room name (e.g., Chill Beats)"
+              className="flex-grow bg-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
             />
-            <div>
-              <strong className="block text-[0.9rem] text-[#1a1a1a]">Amber Holmes</strong>
-              <small className="text-[#555] text-[0.75rem]">Dutch Kiss - Inner Mix</small>
+            <button onClick={createRoom} className="px-4 py-2 rounded-lg bg-purple-600 text-white hover:bg-purple-700">
+              Create
+            </button>
+          </div>
+        </div>
+
+        {/* list rooms */}
+        <div className="grid gap-4">
+          {rooms.map((room) => (
+            <div key={room.id} className="bg-white rounded-2xl shadow p-4">
+              <div className="flex justify-between items-center">
+                <div>
+                  <h4 className="text-lg font-semibold">{room.name}</h4>
+                  <p className="text-sm text-gray-500">Owner: {room.owner}</p>
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    value={friend}
+                    onChange={(e) => setFriend(e.target.value)}
+                    placeholder="Add friend by name"
+                    className="bg-gray-100 rounded-lg px-3 py-2 focus:ring-2 focus:ring-purple-500 outline-none"
+                  />
+                  <button
+                    onClick={() => addFriend(room.id)}
+                    className="px-3 py-2 rounded-lg border border-purple-600 text-purple-600 hover:bg-purple-600 hover:text-white"
+                  >
+                    Invite
+                  </button>
+                </div>
+              </div>
+
+              <div className="mt-3">
+                <p className="text-sm font-semibold mb-1">Members</p>
+                <div className="flex flex-wrap gap-2">
+                  {room.members.map((m, i) => (
+                    <span
+                      key={i}
+                      className="px-3 py-1 rounded-full bg-gray-100 text-sm"
+                    >
+                      {m.name} {m.status === "owner" && "👑"}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {room.requests.length > 0 && (
+                <div className="mt-3">
+                  <p className="text-sm font-semibold mb-1">Requests</p>
+                  <div className="flex flex-wrap gap-2">
+                    {room.requests.map((rq, i) => (
+                      <div key={i} className="flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-50 border border-yellow-200">
+                        <span className="text-sm">{rq.name}</span>
+                        <button
+                          onClick={() => approve(room.id, rq.name)}
+                          className="text-xs px-2 py-1 rounded bg-green-600 text-white"
+                        >
+                          Approve
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
-          <button className="w-full border border-[#7c4dff] text-[#7c4dff] py-[8px] rounded-[20px] hover:bg-[#7c4dff] hover:text-white transition">
-            View All
-          </button>
-        </div>
-      </div>
+          ))}
 
-      {/* Player Bar */}
-      <div className="bg-white/80 backdrop-blur-md fixed bottom-0 left-0 w-full h-[80px] flex items-center justify-between px-[20px] border-t border-[#e5e5e5] shadow-[0_4px_12px_rgba(0,0,0,0.06)]">
-        <div className="flex items-center text-[#1a1a1a] text-[1.5rem]">
-          <button className="mx-[10px] hover:text-[#7c4dff]">◀</button>
-                    <button
-            onClick={togglePlayPause}
-            className="mx-[10px] hover:text-[#7c4dff]"
-          >
-            {isPlaying ? "⏸️" : "▶️"}
-          </button>
-
-          <button className="mx-[10px] hover:text-[#7c4dff]">▶</button>
-        </div>
-
-        <div className="flex items-center flex-grow mx-[20px] text-[#555] text-[0.75rem]">
-          <span>1:20</span>
-
-          <div className="h-[4px] bg-[#e5e5e5] flex-grow mx-[10px] rounded-[2px] relative">
-            <div className="h-full w-[30%] bg-[#7c4dff] rounded-[2px]"></div>
-          </div>
-
-          <span>4:30</span>
+          {rooms.length === 0 && (
+            <p className="text-center text-gray-500">No rooms yet. Create one!</p>
+          )}
         </div>
       </div>
     </div>
   );
 }
-
-          

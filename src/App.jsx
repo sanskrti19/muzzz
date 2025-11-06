@@ -1,52 +1,77 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
- 
- import Landing from "./pages/landing"
-import Home from "./components/Home";
-import About from "./components/About";
-import Contact from "./components/Contact";
 import Login from "./components/Login";
-import Signup from "./components/Signup";
+import SignupPage from "./components/Signup";
+import HomePage from "./components/Home";
 import Room from "./components/Room";
-import Events from "./components/Events";
-import Header from "./components/Navbar";
-import Footer from "./components/Footer";
+import SetProfile from "./components/SetProfile";
+import Profile from "./components/Profile";
+import Rooms from "./components/Room";
 
-const App = () => {
+const isLoggedIn = () => localStorage.getItem("isLoggedIn") === "true";
+const isProfileComplete = () =>
+  !!JSON.parse(localStorage.getItem("MUZZ_PROFILE") || "{}").displayName;
+
+export default function App() {
   return (
-    <Router>
-      <Header />
+    <BrowserRouter>
       <Routes>
-       
-        <Route path="/" element={<Landing />} />
- 
-        <Route path="/home" element={<Home />} />
-
-        
-        <Route path="/about" element={<About />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/room" element={<Room />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/signup" element={<Signup/>}/>
+         
+        <Route
+          path="/"
+          element={
+            isLoggedIn()
+              ? isProfileComplete()
+                ? <Navigate to="/home" />
+                : <Navigate to="/set-profile" />
+              : <Navigate to="/login" />
+          }
+        />
 
         
         <Route path="/login" element={<Login />} />
-         
-       
+        <Route path="/signup" element={<SignupPage />} />
+
+        
         <Route
-          path="*"
+          path="/set-profile"
+          element={isLoggedIn() ? <SetProfile /> : <Navigate to="/login" />}
+        />
+
+        
+        <Route
+          path="/home"
           element={
-            <div style={{ textAlign: "center", padding: "100px", color: "#fff", background: "#000" }}>
-              <h2>404 - Page Not Found</h2>
-              <p>The page you’re looking for doesn’t exist.</p>
-            </div>
+            isLoggedIn()
+              ? (isProfileComplete() ? <HomePage /> : <Navigate to="/set-profile" />)
+              : <Navigate to="/login" />
           }
         />
-      </Routes>
-      <Footer />
-    </Router>
-  );
-};
 
-export default App;
+       
+        <Route
+          path="/profile"
+          element={
+            isLoggedIn()
+              ? (isProfileComplete() ? <Profile /> : <Navigate to="/set-profile" />)
+              : <Navigate to="/login" />
+          }
+        />
+
+        
+        <Route
+          path="/rooms"
+          element={
+            isLoggedIn()
+              ? (isProfileComplete() ? <Rooms /> : <Navigate to="/set-profile" />)
+              : <Navigate to="/login" />
+          }
+        />
+
+         
+        <Route path="/room/:id" element={<Rooms />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}

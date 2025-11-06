@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();  
@@ -32,6 +32,13 @@ const LoginPage = () => {
 }
 
   };
+
+  
+localStorage.setItem("user", JSON.stringify({ email, password }));
+localStorage.setItem("isLoggedIn", "true");
+localStorage.removeItem("MUZZ_PROFILE");  
+navigate("/set-profile");
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-neutral-900 text-white">
@@ -108,4 +115,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
