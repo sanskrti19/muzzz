@@ -6,8 +6,12 @@ import SignupPage from "./components/Signup";
 import HomePage from "./components/Home";
 import Rooms from "./components/Rooms";
 import Room from "./components/Room";
+import About from "./components/About";
+import Events from "./components/Events";
+import Contact from "./components/Contact";
 import SetProfile from "./components/SetProfile";
 import Profile from "./components/Profile";
+import Layout from "./components/Layout";
 
 const isLoggedIn = () => localStorage.getItem("isLoggedIn") === "true";
 const isProfileComplete = () =>
@@ -17,8 +21,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-
-         
+ 
         <Route
           path="/"
           element={
@@ -30,55 +33,56 @@ export default function App() {
           }
         />
 
-        
+      
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/set-profile" element={<SetProfile />} />
 
-        
-        <Route
-          path="/set-profile"
-          element={isLoggedIn() ? <SetProfile /> : <Navigate to="/login" />}
-        />
+         
+        <Route element={<Layout />}>
 
-       
-        <Route
-          path="/home"
-          element={
-            isLoggedIn()
-              ? isProfileComplete()
-                ? <HomePage />
-                : <Navigate to="/set-profile" />
-              : <Navigate to="/login" />
-          }
-        />
+          <Route
+            path="/home"
+            element={
+              isLoggedIn()
+                ? isProfileComplete()
+                  ? <HomePage />
+                  : <Navigate to="/set-profile" />
+                : <Navigate to="/login" />
+            }
+          />
 
-        
-        <Route
-          path="/profile"
-          element={
-            isLoggedIn()
-              ? isProfileComplete()
+          <Route path="/about" element={<About />} />
+          <Route path="/events" element={<Events />} />
+          <Route path="/contact" element={<Contact />} />
+
+          <Route
+            path="/profile"
+            element={
+              isLoggedIn()
                 ? <Profile />
-                : <Navigate to="/set-profile" />
-              : <Navigate to="/login" />
-          }
-        />
+                : <Navigate to="/login" />
+            }
+          />
 
-       
-        <Route
-          path="/rooms"
-          element={
-            isLoggedIn()
-              ? isProfileComplete()
+          <Route
+            path="/rooms"
+            element={
+              isLoggedIn()
                 ? <Rooms />
-                : <Navigate to="/set-profile" />
-              : <Navigate to="/login" />
-          }
-        />
+                : <Navigate to="/login" />
+            }
+          />
 
-        
-        <Route path="/room/:id" element={<Room />} />
-
+          <Route
+            path="/room/:id"
+            element={
+              isLoggedIn()
+                ? <Room />
+                : <Navigate to="/login" />
+            }
+          />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

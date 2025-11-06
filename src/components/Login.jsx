@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,46 +13,40 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-     
     const storedUser = JSON.parse(localStorage.getItem("user"));
+    const profile = JSON.parse(localStorage.getItem("MUZZ_PROFILE") || "{}");
 
     if (
-  storedUser &&
-  storedUser.email === formData.email &&
-  storedUser.password === formData.password
-) {
-  setMessage(" Login successful! Redirecting to home...");
-  localStorage.setItem("isLoggedIn", "true");
+      storedUser &&
+      storedUser.email === formData.email &&
+      storedUser.password === formData.password
+    ) {
+      localStorage.setItem("isLoggedIn", "true");
+      setMessage("Login successful! Redirecting...");
 
-  setTimeout(() => {
-    navigate("/home");   
-  }, 1500);
-} else {
-  setMessage(" Invalid email or password. Try again.");
-}
-
+      setTimeout(() => {
+        // ✅ Go to set-profile only if user hasn’t created profile
+        if (!profile.displayName) {
+          navigate("/set-profile");
+        } else {
+          navigate("/home");
+        }
+      }, 700);
+    } else {
+      setMessage("Invalid email or password.");
+    }
   };
-
-  
-localStorage.setItem("user", JSON.stringify({ email, password }));
-localStorage.setItem("isLoggedIn", "true");
-localStorage.removeItem("MUZZ_PROFILE");  
-navigate("/set-profile");
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-neutral-900 text-white">
-      <div className="bg-neutral-900/90 backdrop-blur-lg border border-red-500/20 shadow-2xl rounded-2xl p-8 w-full max-w-md transform transition duration-300 hover:scale-[1.01] hover:shadow-red-500/30">
-        <h2 className="text-center text-red-500 font-extrabold text-3xl mb-2 tracking-tight">
-          Welcome Back 
+      <div className="bg-neutral-900/90 p-8 rounded-lg max-w-md w-full">
+        <h2 className="text-center text-red-500 text-3xl font-bold mb-4">
+          Welcome Back
         </h2>
-        <p className="text-center text-gray-400 text-sm mb-6">
-          Log in to continue your music journey
-        </p>
 
         {message && (
           <div
-            className={`p-3 rounded-lg mb-4 text-sm font-medium text-center ${
+            className={`p-3 rounded mb-4 text-center ${
               message.includes("successful")
                 ? "bg-green-900/50 text-green-300"
                 : "bg-red-900/50 text-red-300"
@@ -63,50 +57,34 @@ navigate("/set-profile");
         )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block mb-1 text-gray-300 text-sm font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-3 bg-[#1c1c1c] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-black transition duration-200"
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-[#1c1c1c] text-white rounded"
+          />
 
-          <div>
-            <label className="block mb-1 text-gray-300 text-sm font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full p-3 bg-[#1c1c1c] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-black transition duration-200"
-            />
-          </div>
+          <input
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="w-full p-3 bg-[#1c1c1c] text-white rounded"
+          />
 
-          <button
-            type="submit"
-            className="w-full bg-red-600 hover:bg-red-500 text-white font-semibold text-lg py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg hover:shadow-red-500/30"
-          >
+          <button className="w-full bg-red-600 py-3 rounded text-lg font-semibold">
             Log In
           </button>
         </form>
 
-        <p className="text-center text-gray-400 text-sm mt-6">
-          Don’t have an account?{" "}
-          <Link
-            to="/signup"
-            className="text-red-500 font-semibold hover:underline hover:text-red-400"
-          >
+        <p className="text-center mt-6 text-gray-400">
+          Don’t have an account?
+          <Link to="/signup" className="text-red-500 ml-1">
             Sign up
           </Link>
         </p>

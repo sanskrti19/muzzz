@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "./Navbar";
+ 
 
 const allSongs = [
   {
@@ -68,10 +68,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-[#f8f9fb] text-gray-900">
 
-      {/* ✅ Navbar */}
-      <div className="mb-4">
-        <Navbar />
-      </div>
+       
 
       <div className="flex">
 

@@ -1,46 +1,67 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
- 
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const loggedIn = localStorage.getItem("isLoggedIn") === "true";
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("MUZZ_PROFILE");
+    localStorage.removeItem("user");
+
+    navigate("/landing");
+  };
 
   const navItems = [
     { name: "Home", path: "/home" },
     { name: "About", path: "/about" },
     { name: "Events", path: "/events" },
     { name: "Contact", path: "/contact" },
-    { name: "Room", path: "/room/general" },
-
-    { name: "Login", path: "/login" },
-     
+    { name: "Room", path: "/rooms" },
   ];
 
   return (
     <nav className="bg-black text-white px-8 py-4 flex items-center justify-between shadow-md">
-     
+
       <div className="flex items-center space-x-2">
         <img
-          src= "https://i.pinimg.com/1200x/52/67/d4/5267d4279700b5716652fbf756062e4e.jpg"
+          src="https://i.pinimg.com/1200x/52/67/d4/5267d4279700b5716652fbf756062e4e.jpg"
           alt="Muzz Logo"
-          className="w-10 h-10 bg-white p-1 rounded-md position-relative"
+          className="w-10 h-10 bg-white p-1 rounded-md"
         />
         <span className="text-xl font-semibold text-red-500">Muzz</span>
       </div>
 
-     
-      <div className="space-x-6 text-gray-300 text-lg">
+      <div className="space-x-6 text-gray-300 text-lg flex items-center">
+
         {navItems.map((item) => (
           <Link
             key={item.path}
             to={item.path}
-            className={`hover:text-red-500 transition duration-300 ${
+            className={`hover:text-red-500 transition ${
               location.pathname === item.path ? "text-white font-medium" : ""
             }`}
           >
             {item.name}
           </Link>
         ))}
+
+        {/* ✅ LOGIN/LOGOUT button */}
+        {!loggedIn ? (
+          <Link to="/login" className="text-red-500 font-semibold">
+            Login
+          </Link>
+        ) : (
+          <button
+            onClick={handleLogout}
+            className="text-red-500 font-semibold hover:text-red-400"
+          >
+            Logout
+          </button>
+        )}
       </div>
     </nav>
   );

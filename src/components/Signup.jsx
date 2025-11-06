@@ -17,97 +17,69 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    
+    // ✅ Save user only
     localStorage.setItem("user", JSON.stringify(formData));
 
+    setMessage("Account created! Redirecting to login...");
     
-    localStorage.setItem("isLoggedIn", "true");
-
-     
-    setMessage("Account created! Redirecting to profile setup...");
+    // ✅ GO TO LOGIN ONLY
     setTimeout(() => {
-      navigate("/set-profile");
-    }, 1500);
+      navigate("/login");
+    }, 1200);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-neutral-900 text-white">
-      <div className="bg-neutral-900/90 backdrop-blur-lg border border-red-500/20 shadow-2xl rounded-2xl p-8 w-full max-w-md transform transition duration-300 hover:scale-[1.01] hover:shadow-red-500/30">
-        <h2 className="text-center text-red-500 font-extrabold text-3xl mb-2 tracking-tight">
+      <div className="bg-neutral-900/90 p-8 rounded-lg max-w-md w-full border border-red-500/20">
+        <h2 className="text-red-500 text-3xl text-center mb-4 font-bold">
           Create Account
         </h2>
-        <p className="text-center text-gray-400 text-sm mb-6">
-          Join the community and explore your favorite tracks
-        </p>
 
         {message && (
-          <div className="bg-green-900/50 text-green-300 p-3 rounded-lg mb-4 text-sm font-medium text-center">
+          <div className="bg-green-900/50 text-green-300 p-3 mb-4 rounded text-center">
             {message}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block mb-1 text-gray-300 text-sm font-medium">
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              placeholder="John Doe"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="w-full p-3 bg-[#1c1c1c] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-black transition duration-200"
-            />
-          </div>
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            className="w-full p-3 rounded bg-[#1c1c1c] text-white"
+          />
 
-          <div>
-            <label className="block mb-1 text-gray-300 text-sm font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full p-3 bg-[#1c1c1c] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-black transition duration-200"
-            />
-          </div>
+          <input
+            type="email"
+            name="email"
+            placeholder="you@example.com"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="w-full p-3 rounded bg-[#1c1c1c] text-white"
+          />
 
-          <div>
-            <label className="block mb-1 text-gray-300 text-sm font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              className="w-full p-3 bg-[#1c1c1c] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:bg-black transition duration-200"
-            />
-          </div>
+          <input
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            value={formData.password}
+            onChange={handleChange}
+            required
+            className="w-full p-3 rounded bg-[#1c1c1c] text-white"
+          />
 
-          <button
-            type="submit"
-            className="w-full bg-red-600 hover:bg-red-500 text-white font-semibold text-lg py-3 rounded-lg transition duration-300 shadow-md hover:shadow-lg hover:shadow-red-500/30"
-          >
+          <button className="w-full bg-red-600 py-3 rounded font-semibold text-white">
             Sign Up
           </button>
         </form>
 
-        <p className="text-center text-gray-400 text-sm mt-6">
-          Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-red-500 font-semibold hover:underline hover:text-red-400"
-          >
-            Log in
-          </Link>
+        <p className="text-center mt-5 text-gray-400">
+          Already have an account?
+          <Link to="/login" className="text-red-500 ml-1">Log in</Link>
         </p>
       </div>
     </div>

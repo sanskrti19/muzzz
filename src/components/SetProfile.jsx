@@ -20,17 +20,23 @@ export default function SetProfile() {
   const [snapchat, setSnapchat] = useState("");
 
   const saveProfile = () => {
-    const profile = {
-      profilePic: selected,
-      displayName,
-      bio,
-      genre,
-      instagram,
-      snapchat,
-    };
-    localStorage.setItem("MUZZ_PROFILE", JSON.stringify(profile));
-    nav("/home");
+  if (!displayName.trim()) return;
+
+  const profile = {
+    profilePic: selected,
+    displayName: displayName.trim(),
+    bio,
+    genre,
+    instagram,
+    snapchat,
   };
+
+  // ✅ Save correctly
+  localStorage.setItem("MUZZ_PROFILE", JSON.stringify(profile));
+
+  // ✅ Redirect properly
+  nav("/home");
+};
 
   return (
     <div className="min-h-screen bg-[#f8f9fb] flex items-center justify-center p-6">
