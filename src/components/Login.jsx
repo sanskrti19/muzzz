@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // ✅ React Router navigation hook
+  const navigate = useNavigate();  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,7 +13,7 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ✅ Get stored user info from localStorage
+     
     const storedUser = JSON.parse(localStorage.getItem("user"));
 
     if (
@@ -21,17 +21,17 @@ const LoginPage = () => {
       storedUser.email === formData.email &&
       storedUser.password === formData.password
     ) {
-      // ✅ Login successful
-      setMessage("✅ Login successful! Redirecting to home...");
+      
+      setMessage(" Login successful! Redirecting to home...");
       localStorage.setItem("isLoggedIn", "true");
 
-      // Redirect after short delay
+       
       setTimeout(() => {
-        navigate("/"); // 👈 Go to Home page
+        navigate("/");  
       }, 1500);
     } else {
-      // ❌ Wrong credentials
-      setMessage("❌ Invalid email or password. Try again.");
+
+      setMessage(" Invalid email or password. Try again.");
     }
   };
 
@@ -39,7 +39,7 @@ const LoginPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-neutral-900 text-white">
       <div className="bg-neutral-900/90 backdrop-blur-lg border border-red-500/20 shadow-2xl rounded-2xl p-8 w-full max-w-md transform transition duration-300 hover:scale-[1.01] hover:shadow-red-500/30">
         <h2 className="text-center text-red-500 font-extrabold text-3xl mb-2 tracking-tight">
-          Welcome Back 🎶
+          Welcome Back 
         </h2>
         <p className="text-center text-gray-400 text-sm mb-6">
           Log in to continue your music journey
