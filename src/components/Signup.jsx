@@ -8,7 +8,7 @@ const SignupPage = () => {
     password: "",
   });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // ✅ Used to redirect
+  const navigate = useNavigate();  
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -17,12 +17,12 @@ const SignupPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Save user to localStorage
+   
     localStorage.setItem("user", JSON.stringify(formData));
 
     setMessage("Account created successfully! Redirecting to login...");
     setTimeout(() => {
-      navigate("/login"); // ✅ Go to Login page after signup
+      navigate("/login");  
     }, 2000);
   };
 
@@ -30,7 +30,7 @@ const SignupPage = () => {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-neutral-900 text-white">
       <div className="bg-neutral-900/90 backdrop-blur-lg border border-red-500/20 shadow-2xl rounded-2xl p-8 w-full max-w-md transform transition duration-300 hover:scale-[1.01] hover:shadow-red-500/30">
         <h2 className="text-center text-red-500 font-extrabold text-3xl mb-2 tracking-tight">
-          Create Account 🎧
+          Create Account 
         </h2>
         <p className="text-center text-gray-400 text-sm mb-6">
           Join the community and explore your favorite tracks
