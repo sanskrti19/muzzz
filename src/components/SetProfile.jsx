@@ -31,10 +31,10 @@ export default function SetProfile() {
     snapchat,
   };
 
-  // ✅ Save correctly
+  
   localStorage.setItem("MUZZ_PROFILE", JSON.stringify(profile));
 
-  // ✅ Redirect properly
+   
   nav("/home");
 };
 

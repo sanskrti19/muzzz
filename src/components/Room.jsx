@@ -26,7 +26,7 @@ export default function Room() {
   return (
     <div className="room-page-container h-screen w-screen flex flex-col bg-[#f8f9fb] overflow-hidden">
 
-      {/* Top navbar */}
+      
       <div className="bg-white rounded-xl p-4 shadow m-4 flex justify-between items-center">
         <input
           type="text"
@@ -35,21 +35,18 @@ export default function Room() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <img
-          src="https://stories.freepiklabs.com/api/vectors/edit-photo/cuate/render"
-          className="w-12 h-12 rounded-full border-2 border-purple-500"
-        />
+         
       </div>
 
       <div className="main-app-container grid grid-cols-[1fr_280px] gap-4 px-4 overflow-y-auto flex-grow">
 
-        {/* Left side content */}
+        
         <div className="player-content-area">
           <h2 className="text-2xl font-semibold text-purple-600 mb-3">
             Room: {roomName}
           </h2>
 
-          {/* Music cards */}
+          
           <div className="grid grid-cols-2 gap-4 mb-6">
             <div className="music-card bg-white rounded-xl p-4 shadow relative">
               <p className="text-gray-500 text-sm">28 Tracks</p>
@@ -70,10 +67,10 @@ export default function Room() {
             </div>
           </div>
 
-          {/* Genres + Playlist */}
+         
           <div className="grid grid-cols-2 gap-4">
 
-            {/* Genres */}
+            
             <div className="bg-white p-4 rounded-xl shadow">
               <h4 className="font-semibold mb-3">Genres</h4>
               <div className="flex flex-wrap gap-2">
@@ -85,7 +82,7 @@ export default function Room() {
               </div>
             </div>
 
-            {/* Track list */}
+             
             <div className="bg-white p-4 rounded-xl shadow">
               <h4 className="font-semibold mb-3">Playlist / Queue</h4>
               <ul>
@@ -108,7 +105,7 @@ export default function Room() {
           </div>
         </div>
 
-        {/* Friends sidebar */}
+         
         <div className="friends-panel bg-white p-4 rounded-xl shadow sticky top-4">
           <h4 className="font-semibold mb-3">Friends Activity</h4>
           <div className="flex items-center gap-2 p-2 hover:bg-gray-100 rounded-lg">
@@ -125,7 +122,7 @@ export default function Room() {
 
       </div>
 
-      {/* Player bar */}
+       
       <div className="shared-player-bar bg-white/80 backdrop-blur-md h-20 flex items-center justify-between px-6 border-t shadow">
         <div className="flex text-xl gap-4">
           <button>◀</button>

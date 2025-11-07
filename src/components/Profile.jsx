@@ -45,7 +45,7 @@ export default function Profile() {
       <div className="bg-white w-full max-w-3xl rounded-2xl shadow p-6">
         <h2 className="text-2xl font-bold text-purple-600 mb-4">Edit Profile</h2>
 
-        {/* current */}
+        
         <div className="flex items-center gap-4 mb-6">
           <img src={form.profilePic} className="w-16 h-16 rounded-full border-2 border-purple-500 object-cover" />
           <div>

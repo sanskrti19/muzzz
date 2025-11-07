@@ -18,6 +18,7 @@ import About from "./components/About";
 import Events from "./components/Events";
 import Contact from "./components/Contact";
 import Layout from "./components/Layout";
+import Footer from "./components/Footer";
 
  
 const isLoggedIn = () => localStorage.getItem("isLoggedIn") === "true";
@@ -44,8 +45,10 @@ export default function App() {
       <Route path="/events" element={<Events />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="/rooms" element={<Rooms />} />
+      <Route path="/create" element={<Rooms />} />
+      <Route path="/footer" element={<Footer />} />
       <Route path="/room/:id" element={<Room />} />
+      <Route path="/" element={<Landing />} />
       <Route path="/set-profile" element={<SetProfile />} />
     </Route>
 

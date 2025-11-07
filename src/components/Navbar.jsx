@@ -21,12 +21,12 @@ export default function Navbar() {
         bg-black 
         text-white 
         px-8 py-4 
-        flex items-center justify-between
+        flex   items-center justify-between
         shadow-md
-        relative    /* ✅ ensure not fixed */
+        fixed     
       "
     >
-      {/* Logo */}
+       
       <div className="flex items-center space-x-2">
         <img
           src="https://i.pinimg.com/1200x/52/67/d4/5267d4279700b5716652fbf756062e4e.jpg"
@@ -36,7 +36,7 @@ export default function Navbar() {
         <span className="text-xl font-semibold text-red-500">Muzz</span>
       </div>
 
-      {/* Links */}
+      
       <div className="space-x-6 text-gray-300 text-lg">
         {navItems.map((item) => (
           <Link
@@ -50,7 +50,7 @@ export default function Navbar() {
           </Link>
         ))}
 
-        {/* ✅ Login/Logout Toggle */}
+         
         {!isLoggedIn ? (
           <Link to="/login" className="text-red-500 font-semibold">
             Login
@@ -60,7 +60,7 @@ export default function Navbar() {
             onClick={() => {
               localStorage.removeItem("isLoggedIn");
               localStorage.removeItem("MUZZ_PROFILE");
-              // DO NOT REMOVE "user" → so login works later too
+               
               window.location.href = "/landing";
             }}
             className="text-red-500 font-semibold"

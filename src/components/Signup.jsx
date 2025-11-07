@@ -17,12 +17,12 @@ const Signup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // ✅ Save user only
+     
     localStorage.setItem("user", JSON.stringify(formData));
 
     setMessage("Account created! Redirecting to login...");
     
-    // ✅ GO TO LOGIN ONLY
+ 
     setTimeout(() => {
       navigate("/login");
     }, 1200);

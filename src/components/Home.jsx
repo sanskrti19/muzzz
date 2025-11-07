@@ -72,7 +72,7 @@ export default function HomePage() {
 
       <div className="flex">
 
-        {/* ✅ Sidebar */}
+         
         <aside className="w-64 bg-white shadow-lg p-6 flex flex-col gap-6 border-r border-gray-200">
           <nav className="flex flex-col gap-4 text-gray-700 text-[0.95rem]">
             <a className="font-semibold text-purple-600 text-xl">Home</a>
@@ -89,10 +89,10 @@ export default function HomePage() {
           </div>
         </aside>
 
-        {/* ✅ Main Content */}
+         
         <main className="flex-grow p-6 overflow-y-auto">
 
-          {/* SEARCH BAR */}
+          
           <div className="flex justify-between items-center bg-white shadow p-3 rounded-xl mb-6">
             <input
               type="text"
@@ -109,7 +109,7 @@ export default function HomePage() {
             />
           </div>
 
-          {/* SEARCH RESULTS */}
+               
           {query && (
             <div className="bg-white rounded-xl shadow p-4 mb-6">
               <h3 className="font-semibold text-gray-800 mb-3">
@@ -140,7 +140,7 @@ export default function HomePage() {
             </div>
           )}
 
-          {/* TOP MUSIC */}
+         
           <section>
             <h2 className="text-xl font-semibold mb-3">Top Music</h2>
             <div className="flex gap-4 overflow-x-auto pb-2">
@@ -155,7 +155,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* NEWEST */}
+                
           <section className="mt-8">
             <h2 className="text-xl font-semibold mb-3">Newest</h2>
             <div className="flex flex-col gap-3">
@@ -178,7 +178,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* PLAYLIST */}
+           
           <section className="mt-8">
             <div className="flex justify-between items-center mb-3">
               <h2 className="text-xl font-semibold">Playlists</h2>
